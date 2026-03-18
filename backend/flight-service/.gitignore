@@ -1,0 +1,12 @@
+node_modules/
+.env
+combined.log
+src/config/config.json
+vcs.xml
+prettier.xml
+modules.xml
+.swp
+Flight Booking App.iml
+.DS_Store
+.idea/
+.vscode/

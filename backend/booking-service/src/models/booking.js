@@ -1,0 +1,30 @@
+"use strict";
+const { Model } = require("sequelize");
+const { Enums } = require("../utils/common");
+const { BOOKED, PENDING, CANCELLED, INITIATED } = Enums.BOOKING_STATUS;
+module.exports = (sequelize, DataTypes) => {
+  class Booking extends Model {
+    static associate(models) {
+      // define association here
+    }
+  }
+  Booking.init(
+    {
+      flightId: { type: DataTypes.INTEGER, allowNull: false },
+      userId: { type: DataTypes.INTEGER, allowNull: false },
+      status: {
+        type: DataTypes.ENUM,
+        allowNull: false,
+        values: [BOOKED, PENDING, CANCELLED, INITIATED],
+        defaultValue: INITIATED,
+      },
+      noOfSeats: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
+      totalCost: { type: DataTypes.INTEGER, allowNull: false },
+    },
+    {
+      sequelize,
+      modelName: "Booking",
+    },
+  );
+  return Booking;
+};
